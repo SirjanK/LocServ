@@ -24,5 +24,8 @@ if __name__ == '__main__':
     parser.add_option("-p", "--port", dest="portnum",
                       help="Enter port number for server", metavar=False)
     options, args = parser.parse_args()
-    PORT = int(options.portnum)
-    loc_serve_app.run(host=None, port=PORT)
+    if options.portnum is None:
+        loc_serve_app.run(debug=True)
+    else:
+        PORT = int(options.portnum)
+        loc_serve_app.run(host=None, port=PORT, debug=True)
