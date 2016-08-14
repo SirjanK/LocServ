@@ -11,8 +11,10 @@ def configure_webhook(client, url):
         app_id_file = open(APP_ID_FILE_PATH)
         app_id = app_id_file.read()
         app = client.applications.get(app_id)
-        if not app:
-            os.remove(APP_ID_FILE_PATH) # App ID is not valid anymore
+        if app:
+            client.applications.update(app_id, sms_url=url, sms_method='GET')
+        else:
+            os.remove(APP_ID_FILE_PATH)  # App ID is not valid anymore
             generate_new_application(client, url)
     else:
         generate_new_application(client, url)
@@ -24,6 +26,7 @@ def generate_new_application(client, url):
                                      sms_method="GET")
     new_file = open(APP_ID_FILE_PATH, 'w')
     new_file.write(app.sid)
+    print('Please setup your phone number with this TwiML application now')
 
 if __name__ == '__main__':
     account = "AC01c28726d1857eb4ed815b5cf8a7f51b"
