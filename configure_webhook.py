@@ -2,6 +2,7 @@ from __future__ import print_function
 from twilio.rest import TwilioRestClient
 import sys
 import os
+import credentials
 
 APP_ID_FILE_PATH = './app_id.txt'
 
@@ -30,9 +31,7 @@ def generate_new_application(client, url):
     print('Please setup your phone number with this TwiML application now')
 
 if __name__ == '__main__':
-    account = "AC01c28726d1857eb4ed815b5cf8a7f51b"
-    token = "cfb125802b98e767edb6a98015ca1efa"
-    twilio_client = TwilioRestClient(account, token)
+    twilio_client = TwilioRestClient(credentials.ACCOUNT_ID, credentials.AUTH_TOKEN)
     ngrok_url = ''
     for line in sys.stdin:
         ngrok_url += line

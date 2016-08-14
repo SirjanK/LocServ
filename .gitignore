@@ -2,3 +2,4 @@
 .idea/
 nohup.out
 app_id.txt
+credentials.py

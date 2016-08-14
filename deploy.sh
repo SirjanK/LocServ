@@ -8,7 +8,7 @@ function destroy() {
 echo "Enter the desired port number above 1024 (eg. 5000):"
 read port_number
 re='^[0-9]+$'
-if ! [[ ${port_number} =~ $re ]] ; then
+if ! [[ ${port_number} =~ $re ]]; then
     echo "error: Not a number" >&2; exit 1
 fi
 if [ "$port_number" -lt "1025" ]; then
