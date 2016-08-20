@@ -1,5 +1,6 @@
 *.idea
-.idea/
 nohup.out
-setup_scripts/app_id.txt
-credentials.py
+credentials/
+__pycache__/
+static/
+templates/

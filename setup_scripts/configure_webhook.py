@@ -1,10 +1,10 @@
 from __future__ import print_function
 from twilio.rest import TwilioRestClient
+from utils import credentials
 import sys
 import os
-import credentials
 
-APP_ID_FILE_PATH = './app_id.txt'
+APP_ID_FILE_PATH = '../credentials/twiml_app_id.txt'
 
 
 def configure_webhook(client, url):
@@ -31,7 +31,8 @@ def generate_new_application(client, url):
     print('Please setup your phone number with this TwiML application now')
 
 if __name__ == '__main__':
-    twilio_client = TwilioRestClient(credentials.TWILIO_ACCOUNT_ID, credentials.TWILIO_AUTH_TOKEN)
+    credentials_holder = credentials.grab_credentials()
+    twilio_client = TwilioRestClient(credentials_holder.TWILIO_ACCOUNT_ID, credentials_holder.TWILIO_AUTH_TOKEN)
     ngrok_url = ''
     for line in sys.stdin:
         ngrok_url += line
