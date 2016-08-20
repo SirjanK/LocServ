@@ -1,5 +1,5 @@
 *.idea
 .idea/
 nohup.out
-app_id.txt
+setup_scripts/app_id.txt
 credentials.py
