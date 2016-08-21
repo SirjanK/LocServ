@@ -1,8 +1,11 @@
 from __future__ import print_function
-from twilio.rest import TwilioRestClient
-from utils import credentials
-import sys
+
 import os
+import sys
+
+from twilio.rest import TwilioRestClient
+
+from utils import credentials
 
 APP_ID_FILE_PATH = '../credentials/twiml_app_id.txt'
 

@@ -17,7 +17,7 @@ fi
 if [ "$port_number" -eq "4040" ]; then
     echo error: Port number will be utilized by ngrok, please choose another one; exit 1
 fi
-python3 LocServ.py -p ${port_number} &
+python3 locserv/LocServ.py -p ${port_number} &
 nohup ngrok http ${port_number} &
 sleep 2 #TODO: Update with localhost:4040 being polled for status instead
 curl localhost:4040/api/tunnels/ | python3 setup_scripts/ngrok_url.py | python3 setup_scripts/configure_webhook.py

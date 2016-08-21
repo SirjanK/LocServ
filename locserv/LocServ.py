@@ -2,7 +2,7 @@ from __future__ import print_function
 from flask import Flask, request
 from optparse import OptionParser
 import twilio.twiml
-import credentials
+from utils.credentials import grab_credentials
 
 loc_serve_app = Flask(__name__)
 
@@ -10,6 +10,7 @@ loc_serve_app = Flask(__name__)
 @loc_serve_app.route('/', methods=['GET', 'POST'])
 def retrieve_command():
     from_number = request.values.get('From', None)
+    credentials = grab_credentials()
     if from_number == credentials.PERSONAL_PHONE:
         message = 'ayy what is up Sirjan'
     else:
