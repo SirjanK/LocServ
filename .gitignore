@@ -1,6 +1,6 @@
 *.idea
 nohup.out
-credentials/
+cred/
 __pycache__/
 static/
 templates/
