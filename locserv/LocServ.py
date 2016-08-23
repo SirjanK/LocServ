@@ -1,8 +1,11 @@
 from __future__ import print_function
-from flask import Flask, request
+
 from optparse import OptionParser
-from credentials import grab_credentials #### TODO: IMPORT NOT WORKING
+
 import twilio.twiml
+from flask import Flask, request
+
+from credentials import grab_credentials ### TODO: NOT WORKING
 
 loc_serve_app = Flask(__name__)
 

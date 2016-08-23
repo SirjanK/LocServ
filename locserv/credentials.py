@@ -1,7 +1,7 @@
 import os
 import json
 
-CREDENTIALS_FILE_PATH = '../cred/cred.json'
+CREDENTIALS_FILE_PATH = '../../cred/cred.json'
 
 
 def grab_credentials():
