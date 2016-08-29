@@ -1,2 +1,6 @@
 *.idea
-.idea/
+nohup.out
+cred/
+__pycache__/
+static/
+templates/
