@@ -4,8 +4,10 @@ from optparse import OptionParser
 
 import twilio.twiml
 from flask import Flask, request
-
-from credentials import grab_credentials ### TODO: NOT WORKING
+import sys
+import os
+sys.path.append(os.getcwd())
+from locserv import credentials
 
 loc_serve_app = Flask(__name__)
 
@@ -13,8 +15,10 @@ loc_serve_app = Flask(__name__)
 @loc_serve_app.route('/', methods=['GET', 'POST'])
 def retrieve_command():
     from_number = request.values.get('From', None)
-    cred = grab_credentials()
-    if from_number == cred.PERSONAL_PHONE:
+    cred = credentials.grab_credentials()
+    print(from_number)
+    print(cred.get('PERSONAL_PHONE'))
+    if from_number == cred.get('PERSONAL_PHONE'):
         message = 'ayy what is up Sirjan'
     else:
         message = 'wtf who are you'

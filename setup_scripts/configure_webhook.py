@@ -5,14 +5,17 @@ import sys
 
 from twilio.rest import TwilioRestClient
 
-from locserv.utils import grab_credentials
+sys.path.append(os.getcwd())
+from locserv.credentials import grab_credentials
 
-APP_ID_FILE_PATH = '../cred/twiml_app_id.txt'
+APP_ID_FILE_PATH = './cred/'
+APP_ID_FILE_NAME = 'twiml_app_id.txt'
 
 
 def configure_webhook(client, url):
-    if os.path.isfile(APP_ID_FILE_PATH):
-        app_id_file = open(APP_ID_FILE_PATH)
+    complete_file_path = APP_ID_FILE_PATH + APP_ID_FILE_NAME
+    if os.path.isfile(complete_file_path):
+        app_id_file = open(complete_file_path)
         app_id = app_id_file.read()
         app = client.applications.get(app_id)
         if app:
@@ -35,7 +38,7 @@ def generate_new_application(client, url):
 
 if __name__ == '__main__':
     credentials_holder = grab_credentials()
-    twilio_client = TwilioRestClient(credentials_holder.TWILIO_ACCOUNT_ID, credentials_holder.TWILIO_AUTH_TOKEN)
+    twilio_client = TwilioRestClient(credentials_holder.get('TWILIO_ACCOUNT_ID'), credentials_holder.get('TWILIO_AUTH_TOKEN'))
     ngrok_url = ''
     for line in sys.stdin:
         ngrok_url += line
