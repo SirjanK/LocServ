@@ -8,6 +8,8 @@ import sys
 import os
 sys.path.append(os.getcwd())
 from locserv import credentials
+from locserv import cmd_manager
+from locserv import process
 
 loc_serve_app = Flask(__name__)
 
@@ -16,10 +18,15 @@ loc_serve_app = Flask(__name__)
 def retrieve_command():
     from_number = request.values.get('From', None)
     cred = credentials.grab_credentials()
-    print(from_number)
-    print(cred.get('PERSONAL_PHONE'))
     if from_number == cred.get('PERSONAL_PHONE'):
-        message = 'ayy what is up Sirjan'
+        command_str = request.values.get('Body', None)
+        if command_str:
+            command_manager = cmd_manager.CmdManager('.')
+            current_process = process.Process(command_str)
+            command_manager.add_process(current_process)
+            message = command_manager.execute_next_process()
+        else:
+            message = 'Unable to read message body'
     else:
         message = 'wtf who are you'
 

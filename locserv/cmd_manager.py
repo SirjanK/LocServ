@@ -28,3 +28,7 @@ class CmdManager:
 
     def add_process(self, process):
         self.queue.put(process)
+
+    def execute_next_process(self):
+        process = self.queue.get()
+        return process.execute()
